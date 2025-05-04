@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 const Navbar = async () => {
     const session = await auth();
-    console.log('Session:', session);
     return (
         <header className='px-5 py-3 bg-white shadow-sm font-work-sans'>
             <nav className='flex justify-between items-center'>
@@ -14,8 +13,10 @@ const Navbar = async () => {
                 <div className='flex items-center gap-5 text-black'>
                     {session && session.user ? (
                         <>
-                            <Link href="/dashboard" className='text-sm text-gray-500 hover:text-gray-900'>Dashboard</Link>
+                            <Link href="/" className='text-sm text-gray-500 hover:text-gray-900'>Dashboard</Link>
+                            <Link href="/startup" className='text-sm text-gray-500 hover:text-gray-900'>Start Up</Link>
                             <Link href={`/profile/${session?.user.id}`} className='text-sm text-gray-500 hover:text-gray-900'>Profile</Link>
+                            <Link href={`/user/${session?.user?.id}`} className='text-sm text-gray-500 hover:text-gray-900'>{session?.user?.name}</Link>
                             <form
                                 action={async () => {
                                     'use server';
